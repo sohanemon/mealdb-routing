@@ -5,16 +5,27 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
-
-export default function MyCard({
+import { useNavigate } from "react-router-dom";
+interface Props {
+  strMeal: string;
+  strMealThumb: string;
+  strArea: string;
+  strCategory: string;
+}
+const MyCard: React.FC<Props> = ({
   strMeal,
   strMealThumb,
   strArea,
   strCategory,
-}) {
+}) => {
+  const nav = useNavigate();
   return (
     <Card className='max-w-md w-72 mx-auto  mt-20'>
-      <CardHeader color='blue' className='relative h-56'>
+      <CardHeader
+        onClick={() => nav(`meal/${strMeal}`)}
+        color='blue'
+        className='relative h-56 cursor-pointer'
+      >
         <img
           src={strMealThumb}
           alt='img-blur-shadow'
@@ -35,4 +46,5 @@ export default function MyCard({
       </CardFooter>
     </Card>
   );
-}
+};
+export default MyCard;

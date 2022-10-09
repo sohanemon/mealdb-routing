@@ -6,7 +6,7 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
-
+import { Link } from "react-router-dom";
 export default function MyNav() {
   const [openNav, setOpenNav] = useState(false);
 
@@ -25,9 +25,9 @@ export default function MyNav() {
         color='blue-gray'
         className='p-1 font-normal'
       >
-        <a href='#' className='flex items-center'>
-          Pages
-        </a>
+        <Link to='/' className='flex items-center'>
+          Home
+        </Link>
       </Typography>
       <Typography
         as='li'
@@ -35,9 +35,9 @@ export default function MyNav() {
         color='blue-gray'
         className='p-1 font-normal'
       >
-        <a href='#' className='flex items-center'>
-          Account
-        </a>
+        <Link to='about' className='flex items-center'>
+          About
+        </Link>
       </Typography>
       <Typography
         as='li'
@@ -45,9 +45,9 @@ export default function MyNav() {
         color='blue-gray'
         className='p-1 font-normal'
       >
-        <a href='#' className='flex items-center'>
-          Blocks
-        </a>
+        <Link to='contact' className='flex items-center'>
+          Contact
+        </Link>
       </Typography>
       <Typography
         as='li'
@@ -55,23 +55,23 @@ export default function MyNav() {
         color='blue-gray'
         className='p-1 font-normal'
       >
-        <a href='#' className='flex items-center'>
-          Docs
-        </a>
+        <Link to='videos' className='flex items-center'>
+          Videos
+        </Link>
       </Typography>
     </ul>
   );
 
   return (
-    <Navbar className='mx-auto max-w-screen-xl py-2 mt-2 px-4 lg:px-8 lg:py-4'>
+    <Navbar className='mb-10'>
       <div className='container mx-auto flex items-center justify-between text-blue-gray-900'>
         <Typography
-          as='a'
-          href='#'
+          as={Link}
+          to='/'
           variant='small'
           className='mr-4 cursor-pointer py-1.5 font-normal'
         >
-          <span>Material Tailwind</span>
+          <span>React Shef</span>
         </Typography>
         <div className='hidden lg:block'>{navList}</div>
         <Button variant='gradient' size='sm' className='hidden lg:inline-block'>
@@ -118,7 +118,7 @@ export default function MyNav() {
       <MobileNav open={openNav}>
         {navList}
         <Button variant='gradient' size='sm' fullWidth className='mb-2'>
-          <span>Buy Now</span>
+          <span>Get Started</span>
         </Button>
       </MobileNav>
     </Navbar>
