@@ -4,6 +4,7 @@ import Catalogue from "./components/catalogue";
 import SingleMeal from "./components/single-meal";
 import { lazy, Suspense } from "react";
 import Fallback from "./components/fallback";
+import Categories from "./components/categories";
 const Videos = lazy(() => import("./components/videos/videos"));
 const router = createBrowserRouter([
   {
@@ -16,11 +17,39 @@ const router = createBrowserRouter([
         path: "/",
         element: (
           <Suspense fallback={<Fallback />}>
-            <Catalogue />
+            <Catalogue main={true} />
           </Suspense>
         ),
         loader: async () => {
-          return fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=");
+          return fetch(
+            "https://www.themealdb.com/api/json/v1/1/search.php?s=beef"
+          );
+        },
+      },
+      {
+        path: "/category/:category",
+        element: (
+          <Suspense fallback={<Fallback />}>
+            <Catalogue main={false} />
+          </Suspense>
+        ),
+        loader: async ({ params }) => {
+          return fetch(
+            `https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.category}`
+          );
+        },
+      },
+      {
+        path: "/area/:area",
+        element: (
+          <Suspense fallback={<Fallback />}>
+            <Catalogue main={false} />
+          </Suspense>
+        ),
+        loader: async ({ params }) => {
+          return fetch(
+            `https://www.themealdb.com/api/json/v1/1/filter.php?a=${params.area}`
+          );
         },
       },
       {
@@ -47,11 +76,26 @@ const router = createBrowserRouter([
       {
         path: "videos",
         loader: async () => {
-          return fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`);
+          return fetch(
+            `https://www.themealdb.com/api/json/v1/1/search.php?s=beef`
+          );
         },
         element: (
           <Suspense fallback={<Fallback />}>
             <Videos />
+          </Suspense>
+        ),
+      },
+      {
+        path: "Categories",
+        loader: async () => {
+          return fetch(
+            `https://www.themealdb.com/api/json/v1/1/categories.php`
+          );
+        },
+        element: (
+          <Suspense fallback={<Fallback />}>
+            <Categories />
           </Suspense>
         ),
       },

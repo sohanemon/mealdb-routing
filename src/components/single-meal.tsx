@@ -103,7 +103,7 @@ const SingleMeal = () => {
   ];
 
   return (
-    <Tabs id='custom-animation' value='html'>
+    <Tabs id='custom-animation' className='h-screen' value='html'>
       <TabsHeader className=''>
         {data.map(({ label, value }) => (
           <Tab key={value} value={value}>

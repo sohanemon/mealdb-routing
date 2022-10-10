@@ -35,7 +35,22 @@ export default function MyNav() {
         >
           Home
         </Link>
-      </Typography>{" "}
+      </Typography>
+      <Typography
+        as='li'
+        variant='small'
+        color='blue-gray'
+        className='p-1 font-normal'
+      >
+        <Link
+          to='categories'
+          className={`flex items-center focus:outline outline-1 rounded-lg px-3 ${
+            pathname.includes("/categories") && "text-blue-700 font-semibold"
+          }`}
+        >
+          Categories
+        </Link>
+      </Typography>
       <Typography
         as='li'
         variant='small'
@@ -45,7 +60,7 @@ export default function MyNav() {
         <Link
           to='videos'
           className={`flex items-center focus:outline outline-1 rounded-lg px-3 ${
-            pathname === "/videos" && "text-blue-700 font-semibold"
+            pathname.includes("/videos") && "text-blue-700 font-semibold"
           }`}
         >
           Videos
@@ -60,7 +75,7 @@ export default function MyNav() {
         <Link
           to='about'
           className={`flex items-center focus:outline outline-1 rounded-lg px-3 ${
-            pathname === "/about" && "text-blue-700 font-semibold"
+            pathname.includes("/about") && "text-blue-700 font-semibold"
           }`}
         >
           About
@@ -75,7 +90,7 @@ export default function MyNav() {
         <Link
           to='contact'
           className={`flex items-center focus:outline outline-1 rounded-lg px-3 ${
-            pathname === "/contact" && "text-blue-700 font-semibold"
+            pathname.includes("/contact") && "text-blue-700 font-semibold"
           }`}
         >
           Contact

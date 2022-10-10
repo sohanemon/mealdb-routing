@@ -10,9 +10,11 @@ interface Props {
   strMeal: string;
   strMealThumb: string;
   strArea: string;
+  main: boolean;
   strCategory: string;
 }
 const MyCard: React.FC<Props> = ({
+  main,
   strMeal,
   strMealThumb,
   strArea,
@@ -37,17 +39,30 @@ const MyCard: React.FC<Props> = ({
           {strMeal}
         </Typography>
       </CardBody>
-      <CardFooter divider className='flex items-center justify-between py-3'>
-        <Typography variant='small'>{strCategory}</Typography>
-        <Typography
-          variant='small'
-          color='gray'
-          className='flex items-center gap-1'
-        >
-          <i className='fas fa-map-marker-alt fa-sm' />
-          {strArea}
-        </Typography>
-      </CardFooter>
+
+      {main ? (
+        <CardFooter divider className='flex items-center justify-between py-3'>
+          <span
+            className='cursor-pointer'
+            onClick={() => nav(`/category/${strCategory}`)}
+          >
+            <Typography variant='small'>{strCategory}</Typography>
+          </span>
+          <span
+            onClick={() => nav(`/area/${strArea}`)}
+            className='cursor-pointer'
+          >
+            <Typography
+              variant='small'
+              color='gray'
+              className='flex items-center gap-1'
+            >
+              <i className='fas fa-map-marker-alt fa-sm' />
+              {strArea}
+            </Typography>
+          </span>
+        </CardFooter>
+      ) : null}
     </Card>
   );
 };
