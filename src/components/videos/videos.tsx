@@ -1,22 +1,35 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import ReactPlayer from "react-player/youtube";
 
 interface Props {}
 
 const Videos: React.FC<Props> = () => {
   const data: any = useLoaderData();
   const [currentVideo, setCurrentVideo] = useState<any>();
+  const [playing, setPlaying] = useState(false);
 
   const videos: any = data.meals.map(
     (el: { strYoutube: string; strMeal: string }) => {
-      let link = el.strYoutube.replace("watch?v=", "embed/");
-      return { name: el.strMeal, link };
+      //   let link = el.strYoutube.replace("watch?v=", "embed/");
+      return { name: el.strMeal, link: el.strYoutube };
     }
   );
   useEffect(() => {
     setCurrentVideo(videos[0]);
     return () => {};
   }, []);
+  const changeTrack = (isNext: boolean) => {
+    const all = videos.map((el: any, i: number) => {
+      if (el.name === currentVideo?.name) return i + 1;
+    });
+    const [index] = all.filter((el: any) => el);
+    if (isNext && index < 25) {
+      setCurrentVideo(videos[parseInt(index)]);
+    } else if (!isNext && index > 1) {
+      setCurrentVideo(videos[parseInt(index) - 2]);
+    } else window?.alert('Don"t scam');
+  };
 
   return (
     <>
@@ -27,19 +40,21 @@ const Videos: React.FC<Props> = () => {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-          className='w-full max-w-3xl mx-auto overflow-hidden rounded-md'
+          className='w-max max-w-3xl mx-auto overflow-hidden rounded-md'
         >
-          <iframe
+          {/* <iframe
             allowFullScreen={true}
             loading='lazy'
             allow='autoplay; encrypted-media'
             src={currentVideo?.link}
             className='aspect-video w-full'
-          ></iframe>
+          ></iframe> */}
+          <ReactPlayer playing={playing} url={currentVideo?.link} />
 
           <div className='flex items-center justify-center bg-black/30 p-2'>
             <div className='flex items-center space-x-2'>
               <svg
+                onClick={() => changeTrack(false)}
                 className='h-6 w-6 text-white'
                 fill='currentColor'
                 xmlns='http://www.w3.org/2000/svg'
@@ -49,6 +64,7 @@ const Videos: React.FC<Props> = () => {
               </svg>
 
               <svg
+                onClick={() => setPlaying((p) => !p)}
                 className='h-8 w-8 text-white'
                 fill='currentColor'
                 xmlns='http://www.w3.org/2000/svg'
@@ -58,6 +74,7 @@ const Videos: React.FC<Props> = () => {
               </svg>
 
               <svg
+                onClick={() => changeTrack(true)}
                 className='h-6 w-6 text-white'
                 fill='currentColor'
                 xmlns='http://www.w3.org/2000/svg'
@@ -86,7 +103,7 @@ const Videos: React.FC<Props> = () => {
             {videos?.map((el: any, i: number) => (
               <article className='flex items-baseline space-x-2 '>
                 <div className='text-sm w-5'>
-                  {currentVideo?.name === el.name ? (
+                  {currentVideo?.name === el?.name ? (
                     <i className='fa-solid fa-pause'></i>
                   ) : (
                     <i className='fa-solid fa-play'></i>
@@ -95,7 +112,7 @@ const Videos: React.FC<Props> = () => {
                 <div
                   onClick={() => setCurrentVideo(el)}
                   className={`${
-                    currentVideo?.name === el.name && "text-blue-800 "
+                    currentVideo?.name === el?.name && "text-blue-800 "
                   } font-medium py-1 cursor-pointer shrink-0 select-none text-neutral-300`}
                 >
                   {el.name.trim()}
