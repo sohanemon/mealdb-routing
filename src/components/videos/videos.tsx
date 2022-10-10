@@ -30,6 +30,9 @@ const Videos: React.FC<Props> = () => {
           className='w-full max-w-3xl mx-auto overflow-hidden rounded-md'
         >
           <iframe
+            allowFullScreen={true}
+            loading='lazy'
+            allow='autoplay; encrypted-media'
             src={currentVideo?.link}
             className='aspect-video w-full'
           ></iframe>
