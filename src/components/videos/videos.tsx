@@ -55,7 +55,7 @@ const Videos: React.FC<Props> = () => {
             <div className='flex items-center space-x-2'>
               <svg
                 onClick={() => changeTrack(false)}
-                className='h-6 w-6 text-white'
+                className='h-6 w-6 cursor-pointer hover:text-blue-300 text-white'
                 fill='currentColor'
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 320 512'
@@ -65,7 +65,7 @@ const Videos: React.FC<Props> = () => {
 
               <svg
                 onClick={() => setPlaying((p) => !p)}
-                className='h-8 w-8 text-white'
+                className='h-8 w-8 cursor-pointer hover:text-blue-300 text-white'
                 fill='currentColor'
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 512 512'
@@ -75,7 +75,7 @@ const Videos: React.FC<Props> = () => {
 
               <svg
                 onClick={() => changeTrack(true)}
-                className='h-6 w-6 text-white'
+                className='h-6 w-6  cursor-pointer hover:text-blue-300 text-white'
                 fill='currentColor'
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 320 512'
@@ -93,11 +93,11 @@ const Videos: React.FC<Props> = () => {
             <input
               type='text'
               placeholder='type to search'
-              className='w-full rounded-md border-none bg-neutral-800 p-1.5 text-white ring-1 ring-transparent focus:outline-none focus:ring-yellow-500'
+              className='w-full rounded-md border-none bg-neutral-800 p-1.5  ring-1 ring-transparent focus:outline-none focus:ring-blue-500'
             />
           </div>
 
-          <div className='h-0.5 w-full bg-yellow-400'></div>
+          <div className='h-0.5 w-full bg-blue-400'></div>
 
           <div className='h-96 overflow-y-auto pl-7 py-4'>
             {videos?.map((el: any, i: number) => (

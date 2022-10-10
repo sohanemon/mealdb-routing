@@ -35,6 +35,21 @@ export default function MyNav() {
         >
           Home
         </Link>
+      </Typography>{" "}
+      <Typography
+        as='li'
+        variant='small'
+        color='blue-gray'
+        className='p-1 font-normal'
+      >
+        <Link
+          to='videos'
+          className={`flex items-center focus:outline outline-1 rounded-lg px-3 ${
+            pathname === "/videos" && "text-blue-700 font-semibold"
+          }`}
+        >
+          Videos
+        </Link>
       </Typography>
       <Typography
         as='li'
@@ -64,21 +79,6 @@ export default function MyNav() {
           }`}
         >
           Contact
-        </Link>
-      </Typography>
-      <Typography
-        as='li'
-        variant='small'
-        color='blue-gray'
-        className='p-1 font-normal'
-      >
-        <Link
-          to='videos'
-          className={`flex items-center focus:outline outline-1 rounded-lg px-3 ${
-            pathname === "/videos" && "text-blue-700 font-semibold"
-          }`}
-        >
-          Videos
         </Link>
       </Typography>
     </ul>

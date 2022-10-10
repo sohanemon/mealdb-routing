@@ -20,16 +20,16 @@ const MyCard: React.FC<Props> = ({
 }) => {
   const nav = useNavigate();
   return (
-    <Card className='max-w-md w-72 mx-auto  mt-20'>
+    <Card className='max-w-md w-72 mx-auto shadow-sm hover:shadow-lg transition-all duration-300 group  mt-20'>
       <CardHeader
         onClick={() => nav(`meal/${strMeal}`)}
         color='gray'
-        className='relative h-56 cursor-pointer'
+        className='relative h-56 cursor-pointer !mt-0 !shadow-none  !m-0 rounded-t-xl rounded-b-none'
       >
         <img
           src={strMealThumb}
           alt='img-blur-shadow'
-          className='h-full w-full'
+          className='h-full w-full transition-all duration-1000 group-hover:scale-110'
         />
       </CardHeader>
       <CardBody className='text-center pt-6 pb-2'>

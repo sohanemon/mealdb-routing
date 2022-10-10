@@ -8,6 +8,7 @@ const Videos = lazy(() => import("./components/videos/videos"));
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <Fallback />,
     element: <MainComponent />,
 
     children: [
