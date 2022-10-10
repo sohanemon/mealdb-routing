@@ -12,7 +12,7 @@ const Catalogue: React.FC<Props> = () => {
       <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
         {meals &&
           meals.meals?.map((el: any) => (
-            <Suspense fallback={<Fallback />}>
+            <Suspense fallback={""}>
               <Card key={el.idMeal} {...el} />
             </Suspense>
           ))}

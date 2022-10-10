@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
 import {
-  Navbar,
-  MobileNav,
-  Typography,
   Button,
   IconButton,
+  MobileNav,
+  Navbar,
+  Typography,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 export default function MyNav() {
+  const navigate = useNavigate();
   const [openNav, setOpenNav] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     window.addEventListener(
@@ -25,7 +27,12 @@ export default function MyNav() {
         color='blue-gray'
         className='p-1 font-normal'
       >
-        <Link to='/' className='flex items-center'>
+        <Link
+          to='/'
+          className={`flex items-center focus:outline outline-1 rounded-lg px-3 ${
+            pathname === "/" && "text-blue-700 font-semibold"
+          }`}
+        >
           Home
         </Link>
       </Typography>
@@ -35,7 +42,12 @@ export default function MyNav() {
         color='blue-gray'
         className='p-1 font-normal'
       >
-        <Link to='about' className='flex items-center'>
+        <Link
+          to='about'
+          className={`flex items-center focus:outline outline-1 rounded-lg px-3 ${
+            pathname === "/about" && "text-blue-700 font-semibold"
+          }`}
+        >
           About
         </Link>
       </Typography>
@@ -45,7 +57,12 @@ export default function MyNav() {
         color='blue-gray'
         className='p-1 font-normal'
       >
-        <Link to='contact' className='flex items-center'>
+        <Link
+          to='contact'
+          className={`flex items-center focus:outline outline-1 rounded-lg px-3 ${
+            pathname === "/contact" && "text-blue-700 font-semibold"
+          }`}
+        >
           Contact
         </Link>
       </Typography>
@@ -55,7 +72,12 @@ export default function MyNav() {
         color='blue-gray'
         className='p-1 font-normal'
       >
-        <Link to='videos' className='flex items-center'>
+        <Link
+          to='videos'
+          className={`flex items-center focus:outline outline-1 rounded-lg px-3 ${
+            pathname === "/videos" && "text-blue-700 font-semibold"
+          }`}
+        >
           Videos
         </Link>
       </Typography>
@@ -64,18 +86,24 @@ export default function MyNav() {
 
   return (
     <Navbar className='mb-10'>
-      <div className='container mx-auto flex items-center justify-between text-blue-gray-900'>
+      <div className='container mx-auto flex items-center focus:outline outline-1 rounded-lg px-3 justify-between text-blue-gray-900'>
         <Typography
           as={Link}
           to='/'
-          variant='small'
           className='mr-4 cursor-pointer py-1.5 font-normal'
         >
-          <span>React Shef</span>
+          <span className='text-lg font-bold bg-gradient-to-r text-transparent bg-clip-text from-blue-800 to-deep-orange-600'>
+            React Chef
+          </span>
         </Typography>
         <div className='hidden lg:block'>{navList}</div>
-        <Button variant='gradient' size='sm' className='hidden lg:inline-block'>
-          <span>Buy Now</span>
+        <Button
+          onClick={() => navigate("/contact")}
+          variant='gradient'
+          size='sm'
+          className='hidden lg:inline-block'
+        >
+          <span>Contact</span>
         </Button>
         <IconButton
           variant='text'
@@ -117,8 +145,14 @@ export default function MyNav() {
       </div>
       <MobileNav open={openNav}>
         {navList}
-        <Button variant='gradient' size='sm' fullWidth className='mb-2'>
-          <span>Get Started</span>
+        <Button
+          onClick={() => navigate("/contact")}
+          variant='gradient'
+          size='sm'
+          fullWidth
+          className='mb-2'
+        >
+          <span>Contact</span>
         </Button>
       </MobileNav>
     </Navbar>

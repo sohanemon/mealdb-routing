@@ -23,7 +23,7 @@ const MyCard: React.FC<Props> = ({
     <Card className='max-w-md w-72 mx-auto  mt-20'>
       <CardHeader
         onClick={() => nav(`meal/${strMeal}`)}
-        color='blue'
+        color='gray'
         className='relative h-56 cursor-pointer'
       >
         <img
@@ -39,8 +39,12 @@ const MyCard: React.FC<Props> = ({
       </CardBody>
       <CardFooter divider className='flex items-center justify-between py-3'>
         <Typography variant='small'>{strCategory}</Typography>
-        <Typography variant='small' color='gray' className='flex gap-1'>
-          <i className='fas fa-map-marker-alt fa-sm mt-[3px]' />
+        <Typography
+          variant='small'
+          color='gray'
+          className='flex items-center gap-1'
+        >
+          <i className='fas fa-map-marker-alt fa-sm' />
           {strArea}
         </Typography>
       </CardFooter>
